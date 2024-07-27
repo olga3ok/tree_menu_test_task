@@ -6,7 +6,6 @@ def index(request, item_id=None):
 
     sel_item = None
 
-    # дополнительный запрос к БД для получения выбранного пункта меню
     if item_id:
         sel_item = get_object_or_404(MenuItem.objects.select_related('menu'), id=item_id)
     context = {

@@ -18,7 +18,7 @@ class Menu(models.Model):
 
 class MenuItem(models.Model):
 
-    name = models.CharField('Пункты меню', max_length=150)
+    name = models.CharField('Пункт меню', max_length=150)
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='items')
     parent = models.ForeignKey(
         'self',
@@ -27,11 +27,11 @@ class MenuItem(models.Model):
         on_delete=models.CASCADE,
         related_name='children',
     )
-    path = models.TextField(blank=True, null=True)
+    path = models.TextField(max_length=50, blank=True, null=True)
 
     class Meta:
         ordering = ['menu', 'path']
-        verbose_name = 'Пункты меню'
+        verbose_name = 'Пункт меню'
         verbose_name_plural = 'Пункты меню'
 
     def get_path(self):
