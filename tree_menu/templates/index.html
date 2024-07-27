@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load draw_menu %}
+
+
+{% block menus %}
+    <ul>{% draw_menu 'First menu' sel_item %}</ul>
+    <ul>{% draw_menu 'Second menu' sel_item %} </ul>
+{% endblock %}
+

@@ -1,0 +1,29 @@
+{% load draw_menu %}
+
+{% if parent is None %}
+  <h3><strong>{{ menu }}</strong></h3>
+{% endif %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary bg-gradient">
+  <div class="collapse navbar-collapse shadow" >
+    <ul type="disc" class="navbar-nav">
+      {% for item in items %}
+        {% if item.parent == parent %}
+          <li class="nav-item dropdown">
+            <a href="{{ item.get_absolute_url }}" class="nav-link dropdown-toggle link-dark" role="button">
+              {% if item == sel_item %}
+                <b>{{ item.name }}</b>
+              {% else %}
+                {{ item.name }}
+              {% endif %}
+            </a>
+
+            {% if item.name in sel_item.path %}
+              {% draw_menu menu sel_item items parent=item %}
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
